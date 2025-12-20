@@ -10,8 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -20,9 +19,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install mlflow scikit-learn pandas numpy
+          pip install mlflow pandas scikit-learn numpy
 
-      - name: Run MLflow Project
+      - name: Run training
         run: |
           cd MLProject
-          python -m mlflow run . --env-manager=local
+          python modelling.py
