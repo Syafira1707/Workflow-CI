@@ -39,3 +39,10 @@ with mlflow.start_run():
     acc = accuracy_score(y_test, y_pred)
 
     print("Accuracy:", acc)
+
+import joblib
+import os
+
+os.makedirs("artifacts", exist_ok=True)
+joblib.dump(model, "artifacts/iris_model.pkl")
+print("Model saved to artifacts/iris_model.pkl")
