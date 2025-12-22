@@ -1,6 +1,4 @@
-name: titanic_ci_project
-
-conda_env: conda.yaml
+name: Titanic-MLflow-CI
 
 entry_points:
   main:
