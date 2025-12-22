@@ -23,7 +23,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install mlflow scikit-learn pandas
 
-      - name: Run MLflow Project (no conda)
+      - name: Run MLflow Project (local env)
         run: |
           cd MLProject
-          mlflow run . --no-conda
+          mlflow run . --env-manager=local
