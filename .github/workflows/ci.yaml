@@ -9,6 +9,9 @@ jobs:
   train-model:
     runs-on: ubuntu-latest
 
+    env:
+      MLFLOW_TRACKING_URI: file:./mlruns
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
