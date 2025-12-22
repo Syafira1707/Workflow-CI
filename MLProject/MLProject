@@ -1,4 +1,4 @@
-name: iris-ci-project
+name: titanic_ci_project
 
 conda_env: conda.yaml
 
