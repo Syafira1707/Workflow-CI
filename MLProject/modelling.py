@@ -21,47 +21,42 @@ def train_model(data_path: str):
     # 2. TRAIN TEST SPLIT
     # ===============================
     X_train, X_test, y_train, y_test = train_test_split(
-        X,
-        y,
+        X, y,
         test_size=0.2,
         random_state=42,
         stratify=y
     )
 
-    BASE_DIR = Path(__file__).resolve().parent
-
     # ===============================
-    # 3. MLFLOW SETUP (WAJIB)
+    # 3. MLFLOW SETUP
     # ===============================
-    mlflow.set_tracking_uri(f"file:///{BASE_DIR}/mlruns")
     mlflow.set_experiment("Titanic_RandomForest_Autolog")
 
-    # AUTolog sebagai logging utama
+    # Autolog sebagai logging utama
     mlflow.sklearn.autolog(log_models=False)
 
     # ===============================
     # 4. TRAINING
     # ===============================
-    with mlflow.start_run(run_name="rf_autolog_run"):
-        model = RandomForestClassifier(
-            n_estimators=100,
-            random_state=42
-        )
-        model.fit(X_train, y_train)
+    model = RandomForestClassifier(
+        n_estimators=100,
+        random_state=42
+    )
+    model.fit(X_train, y_train)
 
-        y_pred = model.predict(X_test)
+    y_pred = model.predict(X_test)
 
-        print("Accuracy:", accuracy_score(y_test, y_pred))
-        print("\nClassification Report:")
-        print(classification_report(y_test, y_pred))
+    print("Accuracy:", accuracy_score(y_test, y_pred))
+    print("\nClassification Report:")
+    print(classification_report(y_test, y_pred))
 
-        # ===============================
-        # 5. LOG MODEL (INI YANG DICARI REVIEWER)
-        # ===============================
-        mlflow.sklearn.log_model(
-            sk_model=model,
-            artifact_path="model"
-        )
+    # ===============================
+    # 5. LOG MODEL
+    # ===============================
+    mlflow.sklearn.log_model(
+        sk_model=model,
+        artifact_path="model"
+    )
 
 
 if __name__ == "__main__":
