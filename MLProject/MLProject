@@ -1,1 +1,10 @@
+name: Titanic-RandomForest-Project
+
+entry_points:
+  main:
+    parameters:
+      data_path:
+        type: path
+        default: titanic_preprocessed.csv
+    command: "python modelling.py"
 
